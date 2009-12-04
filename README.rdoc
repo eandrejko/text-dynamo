@@ -1,0 +1,11 @@
+= Text Generator
+
+A random text generator using an underlying Markov chain model.
+
+== Usage
+
+To generate text using seed data from the input file:
+
+	ruby generate.rb source/frankenstein.txt
+
+Which will generate a Markov chain from the input text and produce a randomly generated sentence.
