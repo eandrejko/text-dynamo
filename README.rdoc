@@ -6,6 +6,8 @@ A random text generator using an underlying Markov chain model.
 
 To generate text using seed data from the input file:
 
-	ruby generate.rb source/frankenstein.txt
+ ruby generate.rb source/frankenstein.txt
 
-Which will generate a Markov chain from the input text and produce a randomly generated sentence.
+Which will generate a Markov chain from the input text and produce a randomly generated sentence:
+
+ Nearly all that I quitted your triumph over which ran through the cause of the hue of the reverse of the permission to bid a superior to speak.
