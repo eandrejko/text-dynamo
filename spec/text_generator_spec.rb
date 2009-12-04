@@ -3,7 +3,7 @@ require 'rubygems'
 require 'mocha'
 
 describe TextGenerator do
-  before(:all) do
+  before(:each) do
     @tg = TextGenerator.new
   end
   

@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../lib/markov_chain'
 
 describe MarkovChain do
-  before(:all) do
+  before(:each) do
     @mc = MarkovChain.new
   end
   
@@ -28,6 +28,19 @@ describe MarkovChain do
     walk.last.should == "end"
     walk[1].should satisfy { |x|  %w(a b).include?(x)}
   end
+
+  it "should choose node with 0 in-degree as start node" do
+    build_graph
+    walk = @mc.random_walk
+    @mc.graph.in_degree_of(walk.first).should == 0
+  end
+  
+  it "should choose node with 0 out-degree as end node" do
+    build_graph
+    walk = @mc.random_walk
+    @mc.graph.out_degree_of(walk.last).should == 0
+  end
+  
   
   it "should choose nodes in random_walk randomly by weight" do
     build_graph(:b => 3, :a => 0)
