@@ -9,7 +9,10 @@ class WeightedDirectedGraph
   def edge_weight(a,b)
   end
   
-  def includes?(name)
+  def contains?(name)
+  end
+  
+  def out_degree_of(name)
   end
   
 end
