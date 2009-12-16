@@ -19,8 +19,8 @@ describe TextGenerator do
   end
   
   it "should output random walk of markov chain as generated text" do
-    @tg.markov_chain.stub!(:random_walk).and_return(["Start", "at", "the", "beginning."])
-    @tg.generate.should == "Start at the beginning."
+    @tg.markov_chain.stub!(:random_walk).with("Start").and_return(["Start", "at", "the", "beginning."])
+    @tg.generate("Start").should == "Start at the beginning."
   end
   
 end

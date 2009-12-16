@@ -9,8 +9,8 @@ class MarkovChain
   
   def increment_probability(a,b)
   end
-  
-  def random_walk
+
+  def random_walk(start)
   end
 
 end

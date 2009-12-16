@@ -13,8 +13,8 @@ class TextGenerator
   def sentences(text)
   end
   
-  def generate
-    @markov_chain.random_walk.join(" ")
+  def generate(start)
+    @markov_chain.random_walk(start).join(" ")
   end
   
 end

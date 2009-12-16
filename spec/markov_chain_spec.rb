@@ -22,17 +22,17 @@ describe MarkovChain do
   
   it "should walk directed graph from start to end with random_walk" do
     build_graph
-    walk = @mc.random_walk
+    walk = @mc.random_walk("start")
     walk.length.should == 3
     walk.first.should == "start"
     walk.last.should == "end"
     walk[1].should satisfy { |x|  %w(a b).include?(x)}
   end
 
-  it "should choose node with 0 in-degree as start node" do
+  it "should use specified start node" do
     build_graph
-    walk = @mc.random_walk
-    @mc.graph.in_degree_of(walk.first).should == 0
+    walk = @mc.random_walk("start")
+    walk.first.should == "start"
   end
   
   it "should choose node with 0 out-degree as end node" do
@@ -41,41 +41,23 @@ describe MarkovChain do
     @mc.graph.out_degree_of(walk.last).should == 0
   end
   
-  
   it "should choose nodes in random_walk randomly by weight" do
     build_graph(:b => 3, :a => 0)
-    walk = @mc.random_walk
+    walk = @mc.random_walk("start")
     walk.should == ["start", "b", "end"]
   end
   
   it "should choose nodes in random_walk randomly by weight" do
     build_graph(:a => 3, :b => 0)
-    walk = @mc.random_walk
+    walk = @mc.random_walk("start")
     walk.should == ["start", "a", "end"]
   end
   
   # this spec only passes with probablity 1 - 1/2**19
   it "should choose nodes in random_walk randomly by weight" do
     build_graph(:b => 1, :a => 1)
-    walks = (1..20).map{|i| @mc.random_walk}
+    walks = (1..20).map{|i| @mc.random_walk("start")}
     walks.map{|x| x[1]}.uniq.sort.should== ["a", "b"]
-  end
-  
-  # this spec only passes with probablity 1 - 1/2**19
-  it "should randomly choose a start node" do
-    # start a
-    #         \
-    #          end
-    #         / 
-    # start b
-    @mc.graph.add_node("start a")
-    @mc.graph.add_node("start b")
-    @mc.graph.add_node("end")
-    @mc.graph.connect("start a", "end")
-    @mc.graph.connect("start b", "end")
-    walks = (1..20).map{|i| @mc.random_walk}
-    walks.map{|x| x.last}.uniq.should== ["end"]
-    walks.map{|x| x.first}.uniq.sort.should== ["start a", "start b"]
   end
   
   def build_graph(weights = {})
