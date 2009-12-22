@@ -1,6 +1,6 @@
 = Text Generator
 
-A random text generator using an underlying Markov chain model.
+A random text generator using an underlying Markov chain model.  (The implementation is not complete.)
 
 == Usage
 
