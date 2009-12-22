@@ -16,4 +16,4 @@ end
 
 text_generator = TextGenerator.new
 text_generator.seed(seed_text)
-puts text_generator.generate("Nearly" || ARGV[1])
+puts text_generator.generate(ARGV[1] || "Nearly")
